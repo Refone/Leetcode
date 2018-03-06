@@ -14,6 +14,51 @@ The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
 
 ## Solution
 
+* Sort - 3 Pointer
+
+```cpp
+class Solution {
+public:
+    int threeSumClosest(vector<int>& nums, int target) {
+        sort(nums.begin(), nums.end());
+        int size = nums.size();
+        if (size == 3) {
+            return nums[0] + nums[1] + nums[2];
+        }
+
+        int i=0;
+        int j=1;
+        int k=2;
+        int sum;
+        int ret = 999999;
+
+        for (;k<size;k++) {
+            for (j=1;j<k;j++) {
+                for (i=0;i<j;i++) {
+                    sum = nums[i] + nums[j] + nums[k];
+                    if (abs(sum-target) < abs(ret-target)) {
+                        ret = sum;
+                    }
+                    if (sum >= target) {
+                        break;
+                    }
+                }
+                if ((i==0) && (sum>=target)) {
+                    break;
+                }
+            }
+            if ((i==0) && (j==1) && (sum>=target)) {
+                break;
+            }
+        }
+
+        return ret;
+    }
+};
+```
+
+![](./168ms.png)
+
 * Recurse
 
 ```cpp
@@ -51,3 +96,4 @@ public:
 };
 ```
 ![](./1240ms.png)
+
