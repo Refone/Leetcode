@@ -97,3 +97,35 @@ public:
 ```
 ![](./1240ms.png)
 
+* Best Solution
+
+```cpp
+
+class Solution {
+public:
+    int threeSumClosest(vector<int>& nums, int target) {
+        int n = nums.size();
+        sort(nums.begin(), nums.end());
+
+        int min_abs = numeric_limits<int>::max();
+        int closest_sum = 0;
+        for (int p1 = 0; p1 < n; ++p1) {
+            int p2 = p1+1;
+            int p3 = n-1;
+            while (p2 < p3) {
+                int sum = nums[p1] + nums[p2] + nums[p3];
+                //cout << sum << endl;
+                int dist = abs(sum - target);
+                if (dist < min_abs) {
+                    min_abs = dist;
+                    closest_sum = sum;
+                }
+                if (sum < target) ++p2;
+                else if (sum > target) --p3;
+                else return target;
+            }
+        }
+        return closest_sum;
+    }
+};
+```
