@@ -97,7 +97,7 @@ public:
 ```
 ![](./1240ms.png)
 
-* Best Solution
+## Best Solution
 
 ```cpp
 
